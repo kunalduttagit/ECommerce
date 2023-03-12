@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping App</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}">
+</head>
+<body>
+    <code>
+        #include iostream<br>
+        using namespace std;<br>
+        int main()<br>
+        {<br>
+            &emsp;cout << "Hello World!"; <br>
+            &emsp;return 0;<br>
+        }
+    </code><hr/> <span style="color:pink; display:flex; align-self:center;">Tree structure</span> <hr>
+
+{{laptop}}
+<hr><span style="color:pink; display:flex; align-self:center;">QuerySet</span><hr>
+
+{{filters}}
+    {{values}}
+
+
+{% block content %}
+
+{% endblock %}
+</body>
+</html>
