@@ -1,0 +1,103 @@
+{% load static %} {% block content %}
+
+<style>
+.active{
+    display: inline-block;
+    width: 140px;
+    height: auto;
+    margin: 10px;
+    background: rgba(203, 213, 225);
+    color: black;
+    border-radius: 5px;
+}
+
+.nested hover::after{
+    display: none;
+}
+
+.caret::after{
+    color: blue;
+    content: "  \00BB";
+}
+
+.parent:active{
+    text-decoration-line: underline;
+    text-underline-offset: 8px;
+    transition-duration: 0.5s;
+}
+
+.parent{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown li:not(:last-child){
+    position: relative;
+    border-bottom: 1px solid black;
+    margin-top: 0;
+}
+
+.dropdown ul {
+    position: absolute;
+    left:94%
+}
+
+.dropdown{
+    margin-top: 55px;
+}
+
+</style>
+
+<nav class="bg-slate-800 relative">
+    <ul class="px-4 py-4 flex space-x-5 text-teal-300 text-xl">
+        {% for key, value in dic.items %}
+        <li class="pl-4  underline-offset-8 cursor-pointer select-none parent">{{value}}</li>
+        <ul class="dropdown hidden absolute top-100">
+            {% load mptt_tags %}
+            {% recursetree key %}
+            <li class="text-center items-center py-2">
+                {% if node.is_leaf_node %}
+                <span class="leaf">{{ node.name }}</span>
+                {% else %}
+                <span class="caret ">{{ node.name }}</span>
+                <ul class="nested hidden">
+                    {{ children }}
+                </ul>
+                {% endif %}
+            </li>
+            {% endrecursetree %}
+        </ul>
+        {% endfor %}
+    </ul>
+</nav>
+
+
+<script>
+var drop = document.querySelectorAll('.parent')
+
+drop.forEach(d => 
+d.addEventListener('click', function() {
+    // console.log(querySelector('.dropdown').classList.contains('active'));
+    // if(d.parentElement.querySelector('.dropdown').classList.contains('active')){
+    //  d.parentElement.getElementsByClassName('dropdown').classList.remove('active')
+    // }
+        d.nextElementSibling.classList.add('active')
+        d.nextElementSibling.style = `left: ${this.offsetLeft}px;`
+        //querySelector('.parent').classList.toggle('active')
+        
+    }
+))
+
+
+var togglers = document.getElementsByClassName("caret");
+
+for (i = 0; i < togglers.length; i++) {
+    togglers[i].addEventListener("mouseover", function () {
+        this.parentElement.querySelector(".nested").classList.toggle("active");
+    });
+}
+
+</script>
+
+{% endblock %}

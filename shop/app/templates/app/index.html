@@ -2,31 +2,25 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Shopping App</title>
-    <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}">
-</head>
-<body>
-    <code>
-        #include iostream<br>
-        using namespace std;<br>
-        int main()<br>
-        {<br>
-            &emsp;cout << "Hello World!"; <br>
-            &emsp;return 0;<br>
-        }
-    </code><hr/> <span style="color:pink; display:flex; align-self:center;">Tree structure</span> <hr>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
+  </head>
+  <body class=" h-full">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&family=Quicksand:wght@300;400;500&display=swap');
 
-{{laptop}}
-<hr><span style="color:pink; display:flex; align-self:center;">QuerySet</span><hr>
+      body{
+        background: #252530;
+        font-family: "Quicksand";
+      }
+    </style>
+     {% include 'app/navbar.html' %}
 
-{{filters}}
-    {{values}}
+     <h1 class="text-8xl">Trending Items For sure</h1>
+     <footer class="absolute text-white bottom-0">Developed by TFW</footer>
 
-
-{% block content %}
-
-{% endblock %}
-</body>
+  </body>
 </html>
