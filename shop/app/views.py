@@ -17,8 +17,10 @@ def home(request):
     beauty = Category.objects.get(name="Beauty").get_descendants(include_self=False)
     grocery = Category.objects.get(name="Grocery").get_descendants(include_self=False)
     home = Category.objects.get(name="Home & Living").get_descendants(include_self=False)
-    labels = ['Electronics', 'Fashion', 'Beauty', 'Grocery', 'Home & Living']
-    context = [electronic, fashion, beauty, grocery, home]
+    health = Category.objects.get(name="Health").get_descendants(include_self=False)
+    edu = Category.objects.get(name="Education").get_descendants(include_self=False)
+    labels = ['Electronics', 'Fashion', 'Beauty', 'Grocery', 'Health', 'Education', 'Home & Living']
+    context = [electronic, fashion, beauty, grocery, health, edu, home]
     dic = dict(zip(context, labels))
     #tree = obj.get_descendants().filter(level__lte=obj.level + 2)
     return render(request, 'app/index.html', {'dic': dic})

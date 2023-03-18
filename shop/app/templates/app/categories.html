@@ -9,25 +9,34 @@
         display: inline-block;
     }
 
+    .caret::after {
+    color: blue;
+    content: "\00BB";
+    margin-left: 10px;
+}
+
     .topper:hover .parent {
-        border-bottom:1px pink inset;
+        border-bottom:4px solid pink;
+        text-shadow: 0 0 10px rgba(75, 85, 99, 0.749);
     }
 
     .list:hover {
-        background-color: #94a3b8;
+        background-color:rgb(75 85 99);
+        color: white;
     }
 
-    .top {
-        top: 13px;
+    .top{
+        top:13px;
     }
+   
 </style>
 
-<div class="bg-slate-800 relative list-none h-14 w-full">
-    <ul class="text-teal-300 text-xl top absolute flex">
+<div class="bg-slate-400 relative list-none h-14 w-full flex justify-center">
+    <ul class="text-gray-600 text-xl top absolute flex ">
         {% for key, value in dic.items %}
         <div class="topper w-36 text-center items-center">
-            <li class="cursor-pointer select-none parent h-12 m-0 p-0 top-0">{{value}}</li>
-            <ul class="dropdown top-16 divide-y divide-dashed bg-slate-700 text-pink-500 w-36 m-0 p-0 hidden">
+            <li class="cursor-pointer select-none parent h-11 m-0 p-0">{{value}}</li>
+            <ul class="dropdown top-14 divide-y divide-double bg-slate-400 text-gray-600 w-36 m-0 p-0 hidden">
                 {% load mptt_tags %} {% recursetree key %}
                 <div>
                     <li class="text-center items-center py-2 relative list">
@@ -35,7 +44,7 @@
                         <span class="leaf">{{ node.name }}</span>
                         {% else %}
                         <span class="caret">{{ node.name }}</span>
-                        <ul class="nested w-36 top-0 bg-slate-700 absolute left-36 divide-y divide-dashed hidden">
+                        <ul class="nested w-36 top-0 bg-slate-400 absolute left-36 divide-y divide-double hidden">
                             {{ children }}
                         </ul>
                         {% endif %}
