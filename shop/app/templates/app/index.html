@@ -13,14 +13,18 @@
       @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&family=Quicksand:wght@300;400;500&display=swap');
 
       body{
-        background: #252530;
         font-family: "Quicksand";
       }
     </style>
-     {% include 'app/navbar.html' %}
+    <header>
+      {% include 'app/navbar.html' %}
+    </header>
+     <nav class="sm:flex max-sm:hidden">
+      {% include 'app/categories.html' %}
+     </nav>
 
      <h1 class="text-8xl">Trending Items For sure</h1>
-     <footer class="absolute text-white bottom-0">Developed by TFW</footer>
+     <footer class="absolute text-teal-600 bottom-0">Developed by TFW</footer>
 
   </body>
 </html>

@@ -1,0 +1,49 @@
+{% load static %} {% block content %}
+
+<style>
+    .topper:hover > ul {
+        display: inline-block;
+    }
+
+    .list:hover > .nested {
+        display: inline-block;
+    }
+
+    .topper:hover .parent {
+        border-bottom:1px pink inset;
+    }
+
+    .list:hover {
+        background-color: #94a3b8;
+    }
+
+    .top {
+        top: 13px;
+    }
+</style>
+
+<div class="bg-slate-800 relative list-none h-14 w-full">
+    <ul class="text-teal-300 text-xl top absolute flex">
+        {% for key, value in dic.items %}
+        <div class="topper w-36 text-center items-center">
+            <li class="cursor-pointer select-none parent h-12 m-0 p-0 top-0">{{value}}</li>
+            <ul class="dropdown top-16 divide-y divide-dashed bg-slate-700 text-pink-500 w-36 m-0 p-0 hidden">
+                {% load mptt_tags %} {% recursetree key %}
+                <div>
+                    <li class="text-center items-center py-2 relative list">
+                        {% if node.is_leaf_node %}
+                        <span class="leaf">{{ node.name }}</span>
+                        {% else %}
+                        <span class="caret">{{ node.name }}</span>
+                        <ul class="nested w-36 top-0 bg-slate-700 absolute left-36 divide-y divide-dashed hidden">
+                            {{ children }}
+                        </ul>
+                        {% endif %}
+                    </li>
+                </div>
+                {% endrecursetree %}
+            </ul>
+        </div>
+        {% endfor %}
+</div>
+{% endblock %}
